@@ -19,12 +19,13 @@ PyTorch >=1.0.1
 You can view sample code in Example code.ipynb for CIFAR-10. 
 
 ### Dataset and Metrics 
-To use this implementation on a custom dataset, pass a dataset where each row is a data point to the 'Dataset' class. 
+To use this implementation on a custom dataset, pass a dataset where each row is a data point to the 'Dataset' class. You can either specify a random split or pass train and test data separately 
 
     from dataset_models import *
     from new_utilities import *
     #custom_dataset_np is dataset as a numpy array
-    custom_dataset = Dataset(custom_dataset_np,split=0.8)
+    custom_dataset = Dataset(custom_dataset_np,split=0.8) #random split
+    custom_dataset = Dataset(np.array([train_custom_dataset,test_custom_dataset)])
     
 ### Algorithms: PBA and PCA
 PBA and PCA can be applied on the dataset. PBA takes as arguments a lambda value that multiplies rate and a hyperparameter a, that controls the width of the clamping interval. PCA takes as arguments the number of components and the hyperparameter a.   
@@ -33,7 +34,10 @@ PBA and PCA can be applied on the dataset. PBA takes as arguments a lambda value
     custom_dataset = quant_pca(custom_dataset, num_components, a)
     
 ### Metrics
+After applying the desired algorithm, SNR, SSIM metrics can be evaluated on the test dataset by specifying the algorithm. Metrics can be accessed from attributes of the metrics object. 
 
     metrics = Metrics(accuracy=1) #accuracy is 1 if downstream classification is required
     metrics = compute_snr_ssim_metrics(custom_dataset, metrics, algorithm='pba',multichannel='True')
+    print(metrics.bits)
+    print(metrics.p_distortion)
   
