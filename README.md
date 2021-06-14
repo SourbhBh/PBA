@@ -1,7 +1,7 @@
 # PBA
 Principal Bit Analysis: Autoencoding for Schur-Concave Loss 
 
-This repository contains python code for the ICML 2021 paper "Principal Bit Analysis: Autoencoding for Schur-Concave Loss". The code implements a general purpose, learned, fixed-rate compressor derived from Principal Bit Analysis (PBA).   
+This repository contains python code for the ICML 2021 paper ["Principal Bit Analysis: Autoencoding for Schur-Concave Loss"]{https://arxiv.org/abs/2106.02796}. The code implements a general purpose, learned, fixed-rate compressor derived from Principal Bit Analysis (PBA). If you find this code useful for your application please cite the paper.   
 
 ## Dependencies
 Python >=3.6
